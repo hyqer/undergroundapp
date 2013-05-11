@@ -33,7 +33,11 @@ class User:
     def rec_friends_for_user(self, uid):
         # get path p of user u
         # calc the user list can rec to user u
-        pass
+        rst = db.select("users", where=("id != %s" % uid), limit=5)
+        users = []
+        for i in rst:
+            users.append(i)
+        return users
 
 if __name__ == "__main__":
     User.get_or_create(name="xyz", phone_id="phs")
